@@ -1,0 +1,10 @@
+.me-auto{
+    display: flex;
+    align-content: flex-end;
+}
+.con{
+    margin: 0px;
+    background-color:#B46060;
+    padding: 4px;
+    color: #4D4D4D;
+}
