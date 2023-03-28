@@ -1,27 +1,40 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import{createBrowserRouter,RouterProvider} from 'react-router-dom'
+import RootLayout from './components/RootLayout';
+import Home from './components/home/Home'
+import Login from './components/login/Login'
+import Events from './components/events/Events';
+import Members from './components/members/Members';
 
 function App() {
+  const routerObj=createBrowserRouter([
+    {
+      path:'/',
+      element:<RootLayout/>,
+      children:[
+        {
+          path:'/',
+          element:<Home/>
+        },
+        {
+          path:'/events',
+          element:<Events/>
+        },
+        {
+          path:'/members',
+          element:<Members/>
+        },
+        {
+          path:'/login',
+          element:<Login/>
+        }
+      ]
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
-        </p>
-        <p className="small">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div>
+        <RouterProvider router={routerObj}/>
     </div>
   );
 }
