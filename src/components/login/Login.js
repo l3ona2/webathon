@@ -1,16 +1,50 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
+import Form from 'react-bootstrap/Form';
+import {useNavigate} from 'react-router-dom'
+import {useState} from 'react'
 
 import axios from 'axios'
 function Login() {
   let {register,handleSubmit,formState:{errors}}=useForm()
+  // error state
+let [error, setError] = useState("");
+
+  let navigate=useNavigate()
   let addNewUser=(newUser)=>{
-    console.log(newUser);
+    // make http post to save New User to local api
+    axios
+    .post("",newUser)
+    .then((response) => {
+        if (response.message === "Login success") {
+            //navigate to login component
+            navigate('/')
+        }
+        if (response.status !== 200){
+            setError(response.data.message)
+        }
+    })
+    .catch((err) => {
+        //console.log("err is",err)
+        //the client is given an error response (5xx,4xx)
+        if (err.response) {
+            setError(err.message);
+        }
+        //the client never recieved a response
+        else if (err.request) {
+            setError(err.message);
+        }
+        //for other error
+        else {
+            setError(err.messaage);
+        }
+    })
+
   }
   return (
-    <div className='login-form'>
+    <div className='login-form text-center'>
       <div className='row mt-5'>
-        <div className='col-11 col-sm-8 col-md-6 mx-auto'>
+        <div className='col-9 col-sm-8 col-md-6 mx-auto'>
         <h1 className='head text-center mb-4'>Log-in</h1>
       <form onSubmit={handleSubmit(addNewUser)}>
         <div className='mb-3'>
@@ -28,9 +62,18 @@ function Login() {
           <p className='text-danger'>*Password is required</p>}
           {errors.password?.type==="minLength"&&
           <p className='text-danger'>*Password must be atleast 6 characters long</p>}
+          </div>
+          <div className='mb-3' >
+          <Form.Select className='form-control' id="post" {...register("post",{required:true})}
+          >
+      <option>Select Mode</option>
+      <option value="1">Admin</option>
+      <option value="2">User</option>
+    </Form.Select>
         </div>
+        
        
-        <button type="submit"  className='btn bg-dark text-white'>Login</button>
+        <button type="submit"  className='btn bg-dark text-centre text-white mx-auto'>Login</button>
       </form>
         </div>
       </div>

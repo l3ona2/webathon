@@ -1,28 +1,36 @@
 import {Link} from 'react-router-dom'
 import './nav.css'
 
-function BasicExample() {
+function Nav() {
+
   return (
-    <div>
-      <ul className="nav bg-dark d-flex justify-content-end">
+    
+    <div id="van">
+      <ul className="nav justify-content-end" >
         <li className="nav-item">
-          <Link to="/" className="nav-link text-white">
-            Home
+          <Link to="/" className="nav-link ">
+          <a className='nl'>Home</a>
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/" className="nav-link text-white">
-            Events
+          <Link to="/events" className="nav-link ">
+          <a className='nl'>Events</a>
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/login" className="nav-link text-white">
-            Login
+          <Link to="/members" className="nav-link ">
+            <a className='nl'>Members</a>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link ">
+            <a className='nl'>Login</a>
+          </Link>
+          </li>
+          
       </ul>
     </div>
   );
 }
 
-export default BasicExample;
+export default Nav;

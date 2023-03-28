@@ -2,9 +2,14 @@
     display: flex;
     align-content: flex-end;
 }
-.con{
+#van{
     margin: 0px;
-    background-color:#B46060;
+    background-color:#B3E5BE;
     padding: 4px;
-    color: #4D4D4D;
+    box-shadow: 2px 2px 8px gray;
+    color: #804674;
+}
+.nl{
+    text-decoration: none;
+    color: #804674;
 }
